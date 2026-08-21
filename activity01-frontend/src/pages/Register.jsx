@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import "../styles/Register.css"; 
+import { registerUser } from "../api/userApi"; 
 
 function Register() {
     const [username, setUsername] = useState("");
@@ -9,35 +10,50 @@ function Register() {
     const [message, setMessage] = useState("");
     const [error, setError] = useState("");
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-
-        setMessage("");
-        setError("");
-
-        if (!username.trim()) {
-            setError("Username is required.");
-            return;
-        }
-
-        if (!password) {
-            setError("Password is required.");
-            return;
-        }
-
-        if (!confirmPassword) {
-            setError("Please confirm your password.");
-            return;
-        }
-
-        if (password !== confirmPassword) {
-            setError("Passwords do not match.");
-            return;
-        }
-
-        // API connection will be added in the API Integration commit.
-        setMessage("Registration form is valid.");
-    };
+    const handleSubmit = async (event) => {
+    event.preventDefault();
+ 
+    setMessage("");
+    setError("");
+ 
+    if (!username.trim()) {
+        setError("Username is required.");
+        return;
+    }
+ 
+    if (!password) {
+        setError("Password is required.");
+        return;
+    }
+ 
+    if (!confirmPassword) {
+        setError("Please confirm your password.");
+        return;
+    }
+ 
+    if (password !== confirmPassword) {
+        setError("Passwords do not match.");
+        return;
+    }
+ 
+    try {
+        const data = await registerUser({
+            username: username,
+            password: password
+        });
+ 
+        setMessage(
+            `Registration successful! Welcome, ${data.username}.`
+        );
+ 
+        setUsername("");
+        setPassword("");
+        setConfirmPassword("");
+ 
+    } catch (error) {
+        setError(error.message);
+    }
+};
 
     return (
         <div>
