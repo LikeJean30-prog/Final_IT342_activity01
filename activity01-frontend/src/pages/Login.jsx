@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../styles/Login.css";
 import { loginUser } from "../api/userApi";
  
@@ -9,6 +9,8 @@ function Login() {
     const [error, setError] = useState("");
     const [message, setMessage] = useState("");
  
+    const navigate = useNavigate();
+ 
     const handleSubmit = async (event) => {
         event.preventDefault();
  
@@ -16,7 +18,7 @@ function Login() {
         setError("");
         setMessage("");
  
-        
+        // Client-side validation
         if (!username.trim()) {
             setError("Username is required.");
             return;
@@ -28,27 +30,34 @@ function Login() {
         }
  
         try {
-           
+            // Send login request to Spring Boot
             const data = await loginUser({
                 username: username,
                 password: password
             });
-
+ 
+            // Store only non-sensitive user information.
+            // Password is NOT stored.
             sessionStorage.setItem(
-                "user", 
+                "user",
                 JSON.stringify({
-                    id:data.id, 
-                    username:data.username
+                    id: data.id,
+                    username: data.username
                 })
             );
  
-    
+            // Display success message
             setMessage(
                 `Login successful! Welcome, ${data.username}.`
             );
  
-        
+            // Clear password from the form
             setPassword("");
+ 
+            // Redirect to Dashboard after 1 second
+            setTimeout(() => {
+                navigate("/dashboard");
+            }, 1000);
  
         } catch (error) {
             setError(error.message);
