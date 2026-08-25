@@ -106,7 +106,7 @@ function Login() {
                             placeholder="Enter your password"
                             required
                         />
-                    </div>
+                    </div><br/>
  
                     {/* Login button */}
                     <button
@@ -114,17 +114,19 @@ function Login() {
                         className="login-button"
                     >
                         Login
-                    </button>
+                    </button><br/>
  
                 </form>
  
                 {/* Error message */}
+                <br/>
                 {error && (
                     <p className="error-message">
                         {error}
                     </p>
                 )}
- 
+
+                <br/> 
                 {/* Success message */}
                 {message && (
                     <p className="success-message">
@@ -133,9 +135,9 @@ function Login() {
                 )}
  
                 {/* Registration link */}
-                <p className="register-link">
+                <br/><p className="register-prompt">
                     Don't have an account?{" "}
-                    <Link to="/register">
+                    <Link to="/register" className="register-link">
                         Register
                     </Link>
                 </p>
