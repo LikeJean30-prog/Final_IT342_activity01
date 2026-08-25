@@ -56,56 +56,59 @@ function Register() {
 };
 
     return (
-        <div>
+        <div className="register-container">
             <h1>User Registration</h1>
 
             <form onSubmit={handleSubmit}>
-                <div>
-                    <label htmlFor="username">Username</label>
+                <div className="form-group">
+                    <label htmlFor="username">Username</label><br/>
                     <input
                         id="username"
                         type="text"
+                        placeholder="Enter your username"
                         value={username}
                         onChange={(event) => setUsername(event.target.value)}
                         required
                     />
                 </div>
 
-                <div>
-                    <label htmlFor="password">Password</label>
+                <div className="form-group">
+                    <label htmlFor="password">Password</label><br/>
                     <input
                         id="password"
                         type="password"
+                        placeholder="Enter your password"
                         value={password}
                         onChange={(event) => setPassword(event.target.value)}
                         required
                     />
                 </div>
 
-                <div>
+                <div className="form-group">
                     <label htmlFor="confirmPassword">
                         Confirm Password
-                    </label>
+                    </label><br/>
                     <input
                         id="confirmPassword"
                         type="password"
+                        placeholder="Confirm your password"
                         value={confirmPassword}
                         onChange={(event) =>
                             setConfirmPassword(event.target.value)
                         }
                         required
                     />
-                </div>
+                </div><br/>
 
                 <button type="submit">Register</button>
-            </form>
+            </form><br/>
 
-            {message && <p>{message}</p>}
-            {error && <p>{error}</p>}
+            {message && <p className="login-link">{message}</p>}
+            {error && <p className="login-link">{error}</p>}
 
-            <p>
+            <br/><p className="Login-prompt">
                 Already have an account?{" "}
-                <Link to="/login">Login</Link>
+                <Link to="/login" className="login-link">Login</Link>
             </p>
         </div>
     );
