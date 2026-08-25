@@ -1,11 +1,72 @@
-
 body{
-    background-color: pink;
-    font-family: Arial, Helvetica, sans-serif;
+    background:linear-gradient(#EAF1FB, #DBE7F7); 
+    font-family: Arial, sans-serif;
     font-size: 120%; 
-    color:white; 
 }
-
-h1{
-    color:white;
+.login-container{
+    border:#DBE7F7 1px solid; 
+    border-radius: 12px;
+    width: 50%; 
+    min-height:50vh;  
+    background:#ffffff; 
+    color:black; 
+    margin:10% auto; 
+    padding: 24px 32px; 
+    box-sizing: border-box; 
+}
+.login-container h1{
+    color:#1D4E89; 
+    font-size:200%; 
+    text-align: left; 
+    margin-left: 0 0 20px; 
+}
+.form-group{
+    color: #3A5A80; 
+    font-size: 100%; 
+    text-align: left; 
+    padding:2%; 
+}
+.form-group label{
+    text-align: left; 
+    color: #3a5a80; 
+}
+.form-group input{
+    width: 95%; 
+    border: 2px solid #9bb3cc; 
+    background-color: #d8e7f7; 
+    border-radius: 6px; 
+    padding: 2%; 
+}
+.form-group input::placeholder{
+    color: #9bb3cc; 
+    opacity: 1; 
+}
+.login-button{
+    color:#ffffff; 
+    background:#2E6FBD; 
+    border:none; 
+    width: 30%; 
+    min-height: 20%; ;
+    padding: 2%; 
+    border-radius: 6px;
+    cursor: pointer; 
+    font-weight: bold; 
+}
+.login-button:hover{
+    background:#9bb3cc; 
+    color:#d8e7f7; 
+    font-weight: bold; 
+}
+.register-prompt{
+    text-align:center; 
+}
+.register-link{
+    color:#2E6FBD; 
+    text-decoration: none; 
+}
+.error-message{
+    color: #2E6FBD; 
+}
+.success-message{
+    color: #2E6FBD; 
 }
