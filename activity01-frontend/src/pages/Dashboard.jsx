@@ -28,28 +28,27 @@ function Dashboard() {
  
     return (
         <div className="dashboard-page">
-            <div className="dashboard-container">
- 
-                <h1>Dashboard</h1>
- 
-                <h2>
-                    Welcome, {user.username}!
-                </h2>
- 
-                <p>
-                    You have successfully logged in.
-                </p>
- 
+
+            <div className="navigation">
+                <p>Dashboard Page</p>
+            </div>
+
+            <div className="sidebar">
                 <button
                     onClick={handleLogout}
                     className="logout-button"
                 >
                     Logout
                 </button>
- 
             </div>
+
+            <div className="dashboard-container">
+                <h2>
+                    Welcome, {user.username}!
+                </h2>
+            </div>
+
         </div>
     );
 }
- 
 export default Dashboard;
