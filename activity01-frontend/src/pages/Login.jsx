@@ -42,7 +42,8 @@ function Login() {
                 "user",
                 JSON.stringify({
                     id: data.id,
-                    username: data.username
+                    username: data.username,
+                    token:data.token
                 })
             );
  
