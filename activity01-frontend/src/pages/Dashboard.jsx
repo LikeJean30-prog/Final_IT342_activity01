@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import "../styles/Dashboard.css";
  
 function Dashboard() {
@@ -46,6 +46,7 @@ function Dashboard() {
                 <h2>
                     Welcome, {user.username}!
                 </h2>
+                <Link to="/requests" className="nav-link">My Service Requests</Link>
             </div>
 
         </div>
