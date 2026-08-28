@@ -1,26 +1,24 @@
 package edu.cit.manubag.activity01.controller;
 
+import edu.cit.manubag.activity01.dto.LoginResponse;
 import edu.cit.manubag.activity01.dto.UserResponse;
 import edu.cit.manubag.activity01.model.User;
 import edu.cit.manubag.activity01.service.UserService;
+import edu.cit.manubag.activity01.util.JwtUtil;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api")
-@CrossOrigin(
-        origins = {
-                "http://localhost:5173",
-                "http://127.0.0.1:5173"
-        }
-)
 public class UserController {
 
     private final UserService userService;
+    private final JwtUtil jwtUtil;
 
-    public UserController(UserService userService) {
+    public UserController(UserService userService, JwtUtil jwtUtil) {
         this.userService = userService;
+        this.jwtUtil = jwtUtil;
     }
 
     @PostMapping("/register")
@@ -60,10 +58,13 @@ public class UserController {
                     .body("Invalid username or password.");
         }
 
+        String token = jwtUtil.generateToken(loggedInUser.getUsername());
+
         return ResponseEntity.ok(
-                new UserResponse(
+                new LoginResponse(
                         loggedInUser.getId(),
-                        loggedInUser.getUsername()
+                        loggedInUser.getUsername(),
+                        token
                 )
         );
     }
